@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.fastrest">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".cajero_notificaciones_mod"></activity>
+        <activity android:name=".cajero_notificaciones" />
+        <activity android:name=".usuario_condirmacion" />
+        <activity android:name=".usuario_pedido" />
+        <activity android:name=".usuario_producto" />
+        <activity android:name=".usuario_notificaciones" />
+        <activity android:name=".usuario_categoria" />
+        <activity android:name=".usuario_tiendas" />
+        <activity android:name=".admin_mod_producto" />
+        <activity android:name=".admin_producto" />
+        <activity android:name=".admin_mod_categoria" />
+        <activity android:name=".admin_categoria" />
+        <activity android:name=".recuperar_clave" />
+        <activity android:name=".admin_mod_tiendas" />
+        <activity android:name=".admin_tiendas" />
+        <activity android:name=".tipo_usuario" />
+        <activity android:name=".codigo" />
+        <activity android:name=".registrarme" />
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
