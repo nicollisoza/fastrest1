@@ -8,12 +8,11 @@
     tools:context=".recuperar_clave">
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/enviarRecu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
         android:background="#B5CC66"
-        android:onClick="ingresoCodigo"
         android:text="Enviar"
         android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
@@ -33,10 +32,10 @@
 
     <TextView
         android:id="@+id/textView11"
-        android:layout_width="244dp"
-        android:layout_height="62dp"
+        android:layout_width="242dp"
+        android:layout_height="77dp"
         android:layout_marginTop="36dp"
-        android:text="Se enviara un código de  recuperación, ¿en donde deseas recibirlo? "
+        android:text="¿Olvidó su contraseña? Escriba su correo electronico, en breve se enviará un link donde podrá cambiar su contraseña"
         android:textColor="#E8E8E8"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -51,30 +50,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView11">
 
-        <RadioButton
-            android:id="@+id/radioButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Correo Electronico"
-            android:textColor="#DFC091" />
-
         <EditText
-            android:id="@+id/editText5"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:textColor="#DFC091" />
-
-        <RadioButton
-            android:id="@+id/radioButton2"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Celular"
-            android:textColor="#DFC091" />
-
-        <EditText
-            android:id="@+id/editText10"
+            android:id="@+id/correoRecu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
