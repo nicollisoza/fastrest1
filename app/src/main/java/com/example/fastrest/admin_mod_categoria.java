@@ -13,6 +13,7 @@ public class admin_mod_categoria extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_mod_categoria);
     }
+
     public void ingresoAdminCagegoria(View view){
         Intent intent = new Intent(admin_mod_categoria.this, admin_categoria.class );
         startActivity(intent);
