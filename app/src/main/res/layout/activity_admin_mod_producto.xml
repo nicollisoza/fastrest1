@@ -8,7 +8,7 @@
     tools:context=".admin_mod_producto">
 
         <Button
-            android:id="@+id/button17"
+            android:id="@+id/catGuardar"
             android:layout_width="103dp"
             android:layout_height="44dp"
             android:layout_marginTop="36dp"
@@ -40,23 +40,23 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="36dp"
             android:layout_marginLeft="36dp"
-            android:layout_marginTop="36dp"
+            android:layout_marginTop="16dp"
             android:text="Nombre"
             android:textColor="#DFC091"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+            app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
-                <TextView
-                    android:id="@+id/textView13"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="36dp"
-                    android:layout_marginLeft="36dp"
-                    android:layout_marginTop="15dp"
-                    android:text="Descripción"
-                    android:textColor="#DFC091"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/editText12" />
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
+            android:layout_marginLeft="36dp"
+            android:layout_marginTop="16dp"
+            android:text="Descripción"
+            android:textColor="#DFC091"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
                 <TextView
                     android:id="@+id/textView14"
@@ -83,7 +83,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/editText17" />
 
                 <EditText
-                    android:id="@+id/editText12"
+                    android:id="@+id/catNombre"
                     android:layout_width="255dp"
                     android:layout_height="39dp"
                     android:layout_marginStart="36dp"
@@ -94,17 +94,17 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
-                <EditText
-                    android:id="@+id/editText17"
-                    android:layout_width="255dp"
-                    android:layout_height="39dp"
-                    android:layout_marginStart="36dp"
-                    android:layout_marginLeft="36dp"
-                    android:layout_marginTop="5dp"
-                    android:ems="10"
-                    android:inputType="textEmailAddress"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView13" />
+        <EditText
+            android:id="@+id/editText17"
+            android:layout_width="255dp"
+            android:layout_height="39dp"
+            android:layout_marginStart="36dp"
+            android:layout_marginLeft="36dp"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:inputType="textEmailAddress"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
         <ImageView
             android:id="@+id/imageView2"

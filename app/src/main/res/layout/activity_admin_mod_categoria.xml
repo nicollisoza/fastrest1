@@ -9,7 +9,7 @@
 
 
     <Button
-        android:id="@+id/button17"
+        android:id="@+id/catGuardar"
         android:layout_width="103dp"
         android:layout_height="44dp"
         android:layout_marginTop="40dp"
@@ -33,10 +33,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.513"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText12" />
+        app:layout_constraintTop_toBottomOf="@id/catNombre" />
 
                 <EditText
-                    android:id="@+id/editText12"
+                    android:id="@+id/catNombre"
                     android:layout_width="255dp"
                     android:layout_height="39dp"
                     android:layout_marginStart="36dp"
