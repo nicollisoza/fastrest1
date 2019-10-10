@@ -14,25 +14,53 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.io.File;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class admin_mod_producto extends AppCompatActivity {
 
     private String APP_DIRECTORY = "myPicture/";
     private String MEDIA_DIRECTORY = APP_DIRECTORY+ "media";
     private String TEMPORAL_PICTURE_NAME = "temporal";
-
-    private final int PHOTO_CODE = 100;
     private final int SELECT_PICTURE = 200;
     private ImageView imageView;
+    private FirebaseDatabase firebaseDatabase;
+    private DatabaseReference databaseReference;
+    private FirebaseAuth firebaseAuth;
+    private FirebaseStorage firebaseStorage;
+    private StorageReference storageReference;
+    private Uri ubicacion;
+    private Button guardarCat;
+    private EditText des, nom, pre;
+    private String nombre, descr, prec;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_mod_producto);
         imageView = findViewById(R.id.foto);
+        guardarCat = findViewById(R.id.catGuardar);
+        des = findViewById(R.id.descrip);
+        nom = findViewById(R.id.catNombre);
+        pre = findViewById(R.id.precio);
+        firebaseDatabase.getInstance();
+        firebaseStorage = FirebaseStorage.getInstance();
+        storageReference = firebaseStorage.getReference();
+        databaseReference = FirebaseDatabase.getInstance().getReference();
         Button button = findViewById(R.id.cargar);
 
         button.setOnClickListener(new View.OnClickListener() {
@@ -60,6 +88,42 @@ public class admin_mod_producto extends AppCompatActivity {
                 builder.show();
             }
         });
+
+        guardarCat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Date date = new Date();
+                date.getTime();
+                descr = des.getText().toString();
+                nombre = nom.getText().toString();
+                prec = pre.getText().toString();
+                FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+                //DatabaseReference databaseReference = firebaseDatabase.getReference(firebaseAuth.getUid());
+                StorageReference imagen = storageReference.child(Long.toString(date.getTime())).child("fotoProducto");
+                double a = (int) Math.random();
+
+                String randomId = Double.toString(a);
+                if(!nombre.isEmpty() && !descr.isEmpty() && !prec.isEmpty()){
+                    UploadTask task = imagen.putFile(ubicacion);
+                    task.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            Toast.makeText(admin_mod_producto.this, "Se ha subido la foto", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                    Map<String,Object> map = new HashMap();
+                    map.put("descripcion", descr);
+                    map.put("nombreProd", nombre);
+                    map.put("prec", prec);
+                    databaseReference.child("productos").child(Long.toString(date.getTime())).setValue(map);
+                    Toast.makeText(admin_mod_producto.this, "Se ha guardado la información", Toast.LENGTH_SHORT).show();
+                    finish();
+                }
+                else{
+                    Toast.makeText(admin_mod_producto.this, "Llene todos los datos", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
     static final int REQUEST_IMAGE_CAPTURE = 1;
@@ -78,6 +142,7 @@ public class admin_mod_producto extends AppCompatActivity {
         switch(requestCode){
             case REQUEST_IMAGE_CAPTURE:
                 if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+                    ubicacion = data.getData();
                     Bundle extras = data.getExtras();
                     Bitmap imageBitmap = (Bitmap) extras.get("data");
                     imageView.setImageBitmap(imageBitmap);
@@ -85,17 +150,12 @@ public class admin_mod_producto extends AppCompatActivity {
                 break;
             case SELECT_PICTURE:
                 if(resultCode == RESULT_OK){
-                    Uri path = data.getData();
-                    imageView.setImageURI(path);
+                    ubicacion = data.getData();
+                    imageView.setImageURI(ubicacion);
+
                 }
                 break;
         }
-    }
-
-    private void decodeBitMap(String dir) {
-        Bitmap bitmap;
-        bitmap = BitmapFactory.decodeFile(dir);
-        imageView.setImageBitmap(bitmap);
     }
 
     public void ingresoAdminProducto(View view){
