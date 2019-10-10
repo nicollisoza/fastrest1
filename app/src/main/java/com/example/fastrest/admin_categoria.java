@@ -15,6 +15,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -34,27 +35,12 @@ public class admin_categoria extends AppCompatActivity {
         databaseReference = FirebaseDatabase.getInstance().getReference();
         arrayAdapterCategoria = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, categorias);
         listaCategoria.setAdapter(arrayAdapterCategoria);
-        databaseReference.addChildEventListener(new ChildEventListener() {
+        databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                String datos = dataSnapshot.getValue(categoria.class).toString();
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String datos = dataSnapshot.child("categoria").getValue().toString();
                 categorias.add(datos);
                 arrayAdapterCategoria.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-            }
-
-            @Override
-            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
             }
 
             @Override
